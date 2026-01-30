@@ -1,52 +1,307 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Job Portal</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f5f5f5; }
-        .navbar { background: white; padding: 20px; display: flex; justify-content: space-between; }
-        .navbar span { margin: 0 10px; cursor: pointer; }
-        .hero { text-align: center; background: white; padding: 40px; margin: 20px; }
-        input { padding: 10px; margin: 5px; border: 1px solid #ddd; width: 200px; }
-        button { padding: 10px 25px; background: #2196F3; color: white; border: none; cursor: pointer; }
-        button:hover { opacity: 0.8; }
-        .section { margin: 20px; }
-        .card { background: white; padding: 20px; margin: 10px 0; display: flex; justify-content: space-between; }
-        .card h3 { margin-bottom: 10px; }
-        .card p { color: #666; }
-        .companies { background: white; padding: 30px; margin: 20px; }
-        .grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-        .grid div { padding: 15px 25px; border: 1px solid #ddd; }
-    </style>
+<meta charset="UTF-8">
+<title>Job Portal</title>
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #eef2f7;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: #2196f3;
+  border-radius: 6px;
+  padding: 10px 24px;
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* NAVBAR */
+.navbar {
+  background: white;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+}
+
+.navbar span {
+  margin: 0 12px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.navbar span:hover {
+  color: #2196f3;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(120deg, #2196f3, #5fa9ff);
+  color: white;
+  padding: 60px 30px;
+  margin: 30px auto;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 1200px;
+}
+
+.search-box {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: none;
+  width: 220px;
+}
+
+/* SECTIONS */
+.section,
+.companies {
+  background: white;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 14px;
+  max-width: 1200px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* JOB CARDS */
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-radius: 10px;
+  margin-top: 15px;
+  border: 1px solid #eee;
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.job-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.job-logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  padding: 6px;
+  border: 1px solid #ddd;
+}
+
+/* COMPANY GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.company-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  transition: 0.25s;
+}
+
+.company-box img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.company-box:hover {
+  background: #2196f3;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+</style>
+
 </head>
 <body>
-    <div class="navbar">
-        <h2>Job Portal</h2>
-        <div><span>Home</span> | <span>Jobs</span> | <span>Companies</span> | <span>Login</span> | <span>Register</span></div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>Job Portal</h2>
+  <div>
+    <span>Home</span>
+    <span>Jobs</span>
+    <span>Companies</span>
+    <span>Login</span>
+    <span>Register</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Find Your Dream Job</h1>
+  <p>Search among thousands of opportunities</p>
+
+  <div class="search-box">
+    <input placeholder="Skills, Designation">
+    <input placeholder="Location">
+    <button>Search Jobs</button>
+  </div>
+</div>
+
+<!-- JOB SECTION -->
+<div class="section">
+  <h2>Latest Jobs</h2>
+
+  <div class="card">
+    <div class="job-info">
+      <img src="https://i.pinimg.com/564x/05/43/29/054329d9f175094c212a2552a6081dff.jpg" class="job-logo">
+      <div>
+        <h3>Software Developer</h3>
+        <p>TCS • 2-5 Years • Bangalore</p>
+      </div>
     </div>
-    <div class="hero">
-        <h1>Find Your Dream Job</h1>
-        <p>Search among thousands of jobs</p>
-        <div><input placeholder="Skills, Designation"><input placeholder="Location"><button>Search Jobs</button></div>
+    <button>Apply</button>
+  </div>
+
+  <div class="card">
+    <div class="job-info">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQMhYuMbA0YMCa1hNHoCZRPjswt6-6AXCb2A&s" class="job-logo">
+      <div>
+        <h3>Web Designer</h3>
+        <p>Infosys • 1-3 Years • Pune</p>
+      </div>
     </div>
-    <div class="section">
-        <h2>Latest Jobs</h2>
-        <div class="card"><div><h3>Software Developer</h3><p>TCS • 2-5 Years • Bangalore</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>Web Designer</h3><p>Infosys • 1-3 Years • Pune</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>Data Analyst</h3><p>Wipro • 0-2 Years • Delhi</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>Full Stack Developer</h3><p>Accenture • 3-6 Years • Hyderabad</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>UI/UX Designer</h3><p>HCL • 1-4 Years • Mumbai</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>DevOps Engineer</h3><p>Tech Mahindra • 2-5 Years • Chennai</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>Business Analyst</h3><p>Cognizant • 1-3 Years • Noida</p></div><button>Apply</button></div>
-        <div class="card"><div><h3>Cloud Architect</h3><p>IBM • 4-7 Years • Gurgaon</p></div><button>Apply</button></div>
+    <button>Apply</button>
+  </div>
+
+  <div class="card">
+    <div class="job-info">
+      <img src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2017/05/05/Photos/Processed/wiprologo-kXmF--621x414@LiveMint.jpg" class="job-logo">
+      <div>
+        <h3>Data Analyst</h3>
+        <p>Wipro • 0-2 Years • Delhi</p>
+      </div>
     </div>
-    <div class="companies">
-        <h2>Top Companies</h2>
-        <div class="grid">
-            <div>TCS</div><div>Infosys</div><div>Wipro</div><div>Google</div><div>Amazon</div>
-            <div>Microsoft</div><div>Accenture</div><div>HCL</div><div>IBM</div><div>Cognizant</div>
-        </div>
+    <button>Apply</button>
+  </div>
+
+  <div class="card">
+    <div class="job-info">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCQa8maieAU66hmRa1Y5CTjXUyL7dMXVX63A&s" class="job-logo">
+      <div>
+        <h3>Full Stack Developer</h3>
+        <p>Accenture • 3-6 Years • Hyderabad</p>
+      </div>
     </div>
+    <button>Apply</button>
+  </div>
+
+</div>
+
+<!-- COMPANIES -->
+<div class="companies">
+  <h2>Top Companies</h2>
+
+  <div class="grid">
+
+    <div class="company-box">
+      <img src="https://i.pinimg.com/564x/05/43/29/054329d9f175094c212a2552a6081dff.jpg">
+      <span>TCS</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqwHr5rXOV412cfLZXvqBiBiWNJJy_AIpfMQ&s">
+      <span>Infosys</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuRKmtjAiM9SvneSbvgD2BdwI_VfXRqJ-nqA&s">
+      <span>Wipro</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnsOsKYLc1HIt44m97SBW7YLlCqSNV8Qrp0Q&s">
+      <span>Google</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://1000logos.net/wp-content/uploads/2016/10/Amazon-logo-meaning.jpg">
+      <span>Amazon</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0LnDYBaUFCBj2hvQqKZkCwjCZZFXalvd3OA&s">
+      <span>Microsoft</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5Suynr8gGcgy1RSdnIZwrVZcRvoN1c-nI7g&s">
+      <span>IBM</span>
+    </div>
+
+    <div class="company-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQszCUovhqzglSczyWYVkeuQthyQ_AwVX1zxw&s">
+      <span>Cognizant</span>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
